@@ -1,4 +1,3 @@
-// Mood-Based Recommender - Client com IMAGENS E LINKS
 
 class MoodRecommenderWithMedia {
     constructor() {
