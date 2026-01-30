@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood-Based Recommender 🎧</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎧 Mood-Based Recommender</h1>
+            <p class="subtitle">Descubra o conteúdo perfeito para o seu humor</p>
+        </header>
+
+        <main>
+            <!-- Seleção de Humor -->
+            <section class="mood-selector">
+                <h2>Como você está se sentindo?</h2>
+                <div class="mood-grid" id="moodGrid">
+                    <button class="mood-btn" data-mood="feliz">
+                        <span class="emoji">😄</span>
+                        <span class="label">Feliz</span>
+                    </button>
+                    <button class="mood-btn" data-mood="triste">
+                        <span class="emoji">😔</span>
+                        <span class="label">Triste</span>
+                    </button>
+                    <button class="mood-btn" data-mood="relaxado">
+                        <span class="emoji">😴</span>
+                        <span class="label">Relaxado</span>
+                    </button>
+                    <button class="mood-btn" data-mood="energizado">
+                        <span class="emoji">😡</span>
+                        <span class="label">Energizado</span>
+                    </button>
+                    <button class="mood-btn" data-mood="ansioso">
+                        <span class="emoji">😰</span>
+                        <span class="label">Ansioso</span>
+                    </button>
+                    <button class="mood-btn" data-mood="pensativo">
+                        <span class="emoji">🤔</span>
+                        <span class="label">Pensativo</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Resultados -->
+            <section class="results" id="results" style="display: none;">
+                <div class="results-header">
+                    <h2>Recomendações para você</h2>
+                    <p class="selected-mood" id="selectedMood"></p>
+                </div>
+
+                <!-- Músicas -->
+                <div class="content-section">
+                    <h3>🎵 Músicas</h3>
+                    <div class="content-grid" id="musicResults"></div>
+                </div>
+
+                <!-- Filmes -->
+                <div class="content-section">
+                    <h3>🎬 Filmes</h3>
+                    <div class="content-grid" id="movieResults"></div>
+                </div>
+
+                <!-- Jogos -->
+                <div class="content-section">
+                    <h3>🎮 Jogos</h3>
+                    <div class="content-grid" id="gameResults"></div>
+                </div>
+
+                <button class="back-btn" id="backBtn">← Escolher outro humor</button>
+            </section>
+
+            <!-- Loading -->
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Buscando recomendações...</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Desenvolvido com ❤️ | Mood-Based Recommender v1.0</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
