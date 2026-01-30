@@ -1,13 +1,3 @@
-"""
-Mood-Based Recommender - VERSÃO COM IMAGENS E LINKS
-
-Melhorias:
-- Imagens de capa para músicas, filmes e jogos
-- Links clicáveis para Spotify, YouTube, IMDb, Steam, etc.
-- URLs de busca automática
-- Layout visual aprimorado
-"""
-
 from flask import Flask, render_template, request, jsonify, session
 import json
 from dataclasses import dataclass, asdict
@@ -34,16 +24,16 @@ class ConteudoBase:
     id: int
     titulo: str
     mood_scores: Dict[str, int]
-    imagem_url: str  # Nova propriedade
-    link_url: str    # Nova propriedade
+    imagem_url: str 
+    link_url: str    
     
 @dataclass
 class Musica(ConteudoBase):
     artista: str
     duracao: str
     genero: str
-    spotify_id: Optional[str] = None  # ID do Spotify
-    youtube_url: Optional[str] = None  # URL do YouTube
+    spotify_id: Optional[str] = None  
+    youtube_url: Optional[str] = None  
     
 @dataclass
 class Filme(ConteudoBase):
@@ -51,14 +41,14 @@ class Filme(ConteudoBase):
     ano: int
     genero: str
     duracao: str
-    imdb_id: Optional[str] = None  # ID do IMDb
+    imdb_id: Optional[str] = None  
     
 @dataclass
 class Jogo(ConteudoBase):
     plataforma: str
     genero: str
     multiplayer: bool
-    steam_id: Optional[str] = None  # ID da Steam
+    steam_id: Optional[str] = None  
 
 
 class MoodRecommenderWithMedia:
@@ -70,22 +60,18 @@ class MoodRecommenderWithMedia:
         self.jogos = self._carregar_jogos()
     
     def _gerar_url_busca_youtube(self, artista: str, titulo: str) -> str:
-        """Gera URL de busca no YouTube"""
         query = f"{artista} {titulo}"
         return f"https://www.youtube.com/results?search_query={urllib.parse.quote(query)}"
     
     def _gerar_url_spotify(self, artista: str, titulo: str) -> str:
-        """Gera URL de busca no Spotify"""
         query = f"{artista} {titulo}"
         return f"https://open.spotify.com/search/{urllib.parse.quote(query)}"
     
     def _gerar_url_imdb(self, titulo: str, ano: int = None) -> str:
-        """Gera URL de busca no IMDb"""
         query = f"{titulo} {ano}" if ano else titulo
         return f"https://www.imdb.com/find?q={urllib.parse.quote(query)}"
     
     def _gerar_url_steam(self, titulo: str) -> str:
-        """Gera URL de busca na Steam"""
         return f"https://store.steampowered.com/search/?term={urllib.parse.quote(titulo)}"
     
     def _carregar_musicas(self) -> List[Musica]:
@@ -441,7 +427,6 @@ class MoodRecommenderWithMedia:
         }
 
 
-# Inicializa
 recommender = MoodRecommenderWithMedia()
 
 # Rotas (mesmas do anterior)
